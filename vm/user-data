@@ -1,0 +1,14 @@
+#cloud-config
+hostname: k8s-cp
+manage_etc_hosts: true
+users:
+  - name: ubuntu
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    groups: [sudo]
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOrzuejnCEraIfydhK7+v6LIHtd5ts68MSzPOAMd9cr9
+packages:
+  - qemu-guest-agent
+runcmd:
+  - systemctl enable --now qemu-guest-agent
