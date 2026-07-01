@@ -37,8 +37,8 @@ done
 # ---- 1. fetch + verify base image (only if absent) ----------------------
 if [[ ! -f "$BASE_IMG" ]]; then
   echo ">> Downloading Noble cloud image..."
-  sudo wget -O "$BASE_IMG" "$BASE_URL"
-  sudo wget -O "${IMG_DIR}/SHA256SUMS" "$SUMS_URL"
+  sudo wget -4 -O "$BASE_IMG" "$BASE_URL"
+  sudo wget -4 -O "${IMG_DIR}/SHA256SUMS" "$SUMS_URL"
   ( cd "$IMG_DIR" && grep 'noble-server-cloudimg-amd64.img$' SHA256SUMS | sha256sum -c - )
 else
   echo ">> Base image present, skipping download."
